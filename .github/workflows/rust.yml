@@ -15,7 +15,7 @@ jobs:
     name: test on freebsd
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: test on freebsd
         uses: vmactions/freebsd-vm@v1
         with:
@@ -45,7 +45,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: ${{ matrix.rust }}
@@ -58,7 +58,7 @@ jobs:
   msrv:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@1.70.0
       - uses: Swatinem/rust-cache@v2
       - run: cargo check --lib --all-features -p quinn-udp -p quinn-proto -p quinn
@@ -66,7 +66,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt, clippy
@@ -89,7 +89,7 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - uses: EmbarkStudios/cargo-deny-action@v2
 
   test-android:
@@ -109,7 +109,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Install JDK
       uses: actions/setup-java@v4
@@ -160,7 +160,7 @@ jobs:
     env:
       RUSTFLAGS: -Dwarnings
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@stable
       - uses: taiki-e/install-action@cargo-hack
       - run: cargo hack check --feature-powerset --optional-deps --no-dev-deps --ignore-unknown-features --ignore-private --group-features runtime-async-std,async-io,async-std --group-features runtime-smol,async-io,smol
